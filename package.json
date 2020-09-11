@@ -1,0 +1,41 @@
+{
+    "name": "birbcode",
+    "repository": {
+		"type": "git",
+		"url": "https://github.com/Calamity210/Birb-Code.git"
+	},
+    "displayName": "BirbCode",
+    "description": "VSC extension for Birb",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.49.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "icon": "assets/birb.png",
+    "contributes": {
+        "languages": [{
+            "id": "birb",
+            "aliases": ["Birb"],
+            "extensions": [".birb"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "birb",
+            "scopeName": "source.birb",
+            "path": "./syntaxes/birb.tmLanguage.json"
+        }],
+        "colors": [
+			{
+				"id": "birb.closingLabels",
+				"description": "The color of the 'closing label' annotations shown against constructor, method invocations and lists that span multiple lines. If not supplied, the color for 'tab.inactiveForeground' will be used.",
+				"defaults": {
+					"dark": "tab.inactiveForeground",
+					"light": "tab.inactiveForeground",
+					"highContrast": "tab.inactiveForeground"
+				}
+			}
+		]
+    }
+}

@@ -1,0 +1,387 @@
+{
+	"fileTypes": "birb",
+	"foldingStartMarker": "\\{\\s*$",
+	"foldingStopMarker": "^\\s*\\}",
+	"name": "birb",
+	"patterns": [
+		{
+			"match": "^(#!.*)$",
+			"name": "meta.preprocessor.script.birb"
+		},
+		{
+			"begin": "^\\w*\\b(grab)\\b",
+			"beginCaptures": {
+				"0": {
+					"name": "keyword.other.import.birb"
+				}
+			},
+			"end": ";",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.terminator.birb"
+				}
+			},
+			"name": "meta.declaration.birb",
+			"patterns": [
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#punctuation"
+		},
+		{
+			"include": "#annotations"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#constants-and-special-vars"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"birbdoc": {
+			"patterns": [
+				{
+					"match": "(\\[.*?\\])",
+					"captures": {
+						"0": {
+							"name": "variable.name.source.birb"
+						}
+					}
+				},
+				{
+					"match": "^ {4,}(?![ \\*]).*",
+					"captures": {
+						"0": {
+							"name": "variable.name.source.birb"
+						}
+					}
+				},
+				{
+					"begin": "```.*?$",
+					"end": "```",
+					"contentName": "variable.other.source.birb"
+				},
+				{
+					"match": "(`.*?`)",
+					"captures": {
+						"0": {
+							"name": "variable.other.source.birb"
+						}
+					}
+				},
+				{
+					"match": "(`.*?`)",
+					"captures": {
+						"0": {
+							"name": "variable.other.source.birb"
+						}
+					}
+				},
+				{
+					"match": "(\\* ((    ).*))$",
+					"captures": {
+						"2": {
+							"name": "variable.other.source.birb"
+						}
+					}
+				},
+				{
+					"match": "(\\*    .*)$"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.birb"
+						}
+					},
+					"match": "/\\*\\*/",
+					"name": "comment.block.empty.birb"
+				},
+				{
+					"include": "#comments-doc-oldschool"
+				},
+				{
+					"include": "#comments-doc"
+				},
+				{
+					"include": "#comments-inline"
+				}
+			]
+		},
+		"comments-doc-oldschool": {
+			"patterns": [
+				{
+					"begin": "/\\*\\*",
+					"end": "\\*/",
+					"name": "comment.block.documentation.birb",
+					"patterns": [
+						{
+							"include": "#comments-doc-oldschool"
+						},
+						{
+							"include": "#comments-block"
+						},
+						{
+							"include": "#birbdoc"
+						}
+					]
+				}
+			]
+		},
+		"comments-doc": {
+			"patterns": [
+				{
+					"begin": "///",
+					"while": "^\\s*///",
+					"patterns": [
+						{
+							"include": "#birbdoc"
+						}
+					],
+					"name": "comment.block.documentation.birb"
+				}
+			]
+		},
+		"comments-inline": {
+			"patterns": [
+				{
+					"include": "#comments-block"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "comment.line.double-slash.birb"
+						}
+					},
+					"match": "((//).*)$"
+				}
+			]
+		},
+		"comments-block": {
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"end": "\\*/",
+					"name": "comment.block.birb",
+					"patterns": [
+						{
+							"include": "#comments-block"
+						}
+					]
+				}
+			]
+		},
+		"annotations": {
+			"patterns": [
+				{
+					"match": "<[a-zA-Z]+>",
+					"name": "storage.type.annotation.birb"
+				}
+			]
+		},
+		"constants-and-special-vars": {
+			"patterns": [
+				{
+					"match": "(?<!\\$)\\b(true|false|noSeeb)\\b(?!\\$)",
+					"name": "constant.language.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b(nest)\\b(?!\\$)",
+					"name": "variable.language.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)\\b(?!\\$)",
+					"name": "constant.numeric.birb"
+				},
+				{
+					"match": "(?<![a-zA-Z0-9_$])([_$]*[A-Z][a-zA-Z0-9_$]*|bool\\b|num\\b|int\\b|double\\b|dynamic\\b)",
+					"name": "support.class.birb"
+				},
+				{
+					"match": "([_$]*[a-z][a-zA-Z0-9_$]*)(<|\\(|\\s+=>)",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.birb"
+						}
+					}
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "(?<!\\$)\\b(throw)\\b(?!\\$)",
+					"name": "keyword.control.catch-exception.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b(break|case|default|else|for|if|next|return|switch|while)\\b(?!\\$)",
+					"name": "keyword.control.birb"
+				},
+				{
+					"match": "(?<!\\$)\\bassert\\b(?!\\$)",
+					"name": "keyword.control.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b(new)\\b(?!\\$)",
+					"name": "keyword.control.new.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b(class|enum|follows)\\b(?!\\$)",
+					"name": "keyword.declaration.birb"
+				},
+				{
+					"match": "\\?|:",
+					"name": "keyword.operator.ternary.birb"
+				},
+				{
+					"match": "(<<|>>>?|~|\\^|\\||&)",
+					"name": "keyword.operator.bitwise.birb"
+				},
+				{
+					"match": "((&|\\^|\\||<<|>>>?)=)",
+					"name": "keyword.operator.assignment.bitwise.birb"
+				},
+				{
+					"match": "(=>)",
+					"name": "keyword.operator.closure.birb"
+				},
+				{
+					"match": "(==|!=|<=?|>=?)",
+					"name": "keyword.operator.comparison.birb"
+				},
+				{
+					"match": "(([+*/%-]|\\~)=)",
+					"name": "keyword.operator.assignment.arithmetic.birb"
+				},
+				{
+					"match": "(=)",
+					"name": "keyword.operator.assignment.birb"
+				},
+				{
+					"match": "(\\-\\-|\\+\\+)",
+					"name": "keyword.operator.increment-decrement.birb"
+				},
+				{
+					"match": "(\\-|\\+|\\*|\\/|\\~\\/|%)",
+					"name": "keyword.operator.arithmetic.birb"
+				},
+				{
+					"match": "(!|&&|\\|\\|)",
+					"name": "keyword.operator.logical.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b(final|const|)\\b(?!\\$)",
+					"name": "storage.modifier.birb"
+				},
+				{
+					"match": "(?<!\\$)\\b(?:void|var)\\b(?!\\$)",
+					"name": "storage.type.primitive.birb"
+				}
+			]
+		},
+		"string-interp": {
+			"patterns": [
+				{
+					"captures": {
+						"2": {
+							"name": "variable.parameter.birb"
+						}
+					},
+					"match": "\\$(\\{([^{}]+)\\})"
+				},
+				{
+					"match": "\\\\.",
+					"name": "constant.character.escape.birb"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"begin": "(?<!\\|r)\"",
+					"end": "\"",
+					"name": "string.interpolated.double.birb",
+					"patterns": [
+						{
+							"match": "\\n",
+							"name": "invalid.string.newline"
+						},
+						{
+							"include": "#string-interp"
+						}
+					]
+				},
+				{
+					"begin": "r\"",
+					"end": "\"",
+					"name": "string.quoted.double.birb",
+					"patterns": [
+						{
+							"match": "\\n",
+							"name": "invalid.string.newline"
+						}
+					]
+				},
+				{
+					"begin": "(?<!\\|r)'",
+					"end": "'",
+					"name": "string.interpolated.single.birb",
+					"patterns": [
+						{
+							"match": "\\n",
+							"name": "invalid.string.newline"
+						},
+						{
+							"include": "#string-interp"
+						}
+					]
+				},
+				{
+					"begin": "r'",
+					"end": "'",
+					"name": "string.quoted.single.birb",
+					"patterns": [
+						{
+							"match": "\\n",
+							"name": "invalid.string.newline"
+						}
+					]
+				}
+			]
+		},
+		"punctuation": {
+			"patterns": [
+				{
+					"match": ",",
+					"name": "punctuation.comma.birb"
+				},
+				{
+					"match": ";",
+					"name": "punctuation.terminator.birb"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.dot.birb"
+				}
+			]
+		}
+	},
+	"scopeName": "source.birb"
+}
