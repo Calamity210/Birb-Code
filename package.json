@@ -1,5 +1,6 @@
 {
     "name": "birbcode",
+    "publisher": "BirbDev",
     "repository": {
 		"type": "git",
 		"url": "https://github.com/Calamity210/Birb-Code.git"
@@ -8,8 +9,8 @@
     "description": "VSC extension for Birb",
     "version": "0.0.1",
     "engines": {
-        "vscode": "^1.49.0"
-    },
+		"vscode": "^1.47.0"
+	},
     "categories": [
         "Programming Languages"
     ],

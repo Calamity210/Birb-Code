@@ -1,3 +1,5 @@
 .vscodeignore
 
 .vscode/
+
+*.vsix
