@@ -26,6 +26,14 @@
             "scopeName": "source.birb",
             "path": "./syntaxes/birb.tmLanguage.json"
         }],
+        "configurationDefaults": {
+			"[birb]": {
+				"editor.tabSize": 2,
+				"editor.insertSpaces": true,
+				"editor.detectIndentation": false,
+				"editor.suggest.insertMode": "replace"
+			}
+		},
         "colors": [
 			{
 				"id": "birb.closingLabels",

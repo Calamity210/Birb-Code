@@ -1,8 +1,10 @@
 {
-	"fileTypes": "birb",
+	"fileTypes": [
+		"birb"
+	],
 	"foldingStartMarker": "\\{\\s*$",
 	"foldingStopMarker": "^\\s*\\}",
-	"name": "birb",
+	"name": "Birb",
 	"patterns": [
 		{
 			"match": "^(#!.*)$",
@@ -227,11 +229,11 @@
 		"keywords": {
 			"patterns": [
 				{
-					"match": "(?<!\\$)\\b(throw)\\b(?!\\$)",
+					"match": "(?<!\\$)\\b(try|catch|throw)\\b(?!\\$)",
 					"name": "keyword.control.catch-exception.birb"
 				},
 				{
-					"match": "(?<!\\$)\\b(break|case|default|else|for|if|next|return|switch|while)\\b(?!\\$)",
+					"match": "(?<!\\$)\\b(break|case|default|do|else|for|if|next|return|switch|while)\\b(?!\\$)",
 					"name": "keyword.control.birb"
 				},
 				{
@@ -287,7 +289,7 @@
 					"name": "keyword.operator.logical.birb"
 				},
 				{
-					"match": "(?<!\\$)\\b(final|const|)\\b(?!\\$)",
+					"match": "(?<!\\$)\\b(final|const)\\b(?!\\$)",
 					"name": "storage.modifier.birb"
 				},
 				{
@@ -302,9 +304,12 @@
 					"captures": {
 						"2": {
 							"name": "variable.parameter.birb"
+						},
+						"3": {
+							"name": "variable.parameter.birb"
 						}
 					},
-					"match": "\\$(\\{([^{}]+)\\})"
+					"match": "\\$((\\w+)|\\{([^{}]+)\\})"
 				},
 				{
 					"match": "\\\\.",
