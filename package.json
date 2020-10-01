@@ -45,6 +45,12 @@
 					"highContrast": "tab.inactiveForeground"
 				}
 			}
-		]
+        ],
+        "snippets": [
+            {
+                "language": "birb",
+                "path": "./snippets/birb.json"
+            }
+        ]
     }
 }
